@@ -28,7 +28,7 @@ func DurationInMinutes(durationInMinutes int) (Duration, error) {
 	if durationInMinutes <= 0 {
 		defaultDuration := Duration{durationInMinutes: 1}
 
-		return defaultDuration, errors.New("Duration should be a positive number in minutes")
+		return defaultDuration, errors.New("duration should be a positive number in minutes")
 	}
 
 	return Duration{durationInMinutes: durationInMinutes}, nil
