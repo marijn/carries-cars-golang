@@ -5,7 +5,7 @@ import (
 )
 
 func CalculatePrice(pricePerMinute money.Money, duration Duration) money.Money {
-	return
+	return pricePerMinute.Multiply(float64(duration.durationInMinutes))
 }
 
 type Duration struct {
@@ -13,7 +13,5 @@ type Duration struct {
 }
 
 func DurationInMinutes(durationInMinutes int) Duration {
-	// TODO: Guard against durationInMinutes of zero or less
-
-	return
+	return Duration{durationInMinutes: durationInMinutes}
 }

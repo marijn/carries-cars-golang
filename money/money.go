@@ -29,5 +29,9 @@ func (money Money) Amount() int {
 	return money.amount
 }
 
+func (money Money) Multiply(multiplier float64) Money {
+	return money
+}
+
 const Euro = "EUR"
 const UnitedStatesDollar = "USD"
