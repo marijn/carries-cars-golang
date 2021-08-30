@@ -8,19 +8,25 @@ type Money struct {
 }
 
 func EUR(amount int) Money {
-	return
+	return Money{
+		amount:          amount,
+		currencyIsoCode: Euro,
+	}
 }
 
 func USD(amount int) Money {
-	return
+	return Money{
+		amount:          amount,
+		currencyIsoCode: UnitedStatesDollar,
+	}
 }
 
 func (money Money) Equals(other Money) bool {
-	return
+	return money.amount == other.amount && money.currencyIsoCode == other.currencyIsoCode
 }
 
 func (money Money) Amount() int {
-	return
+	return money.amount
 }
 
 const Euro = "EUR"
