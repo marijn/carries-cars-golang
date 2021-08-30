@@ -30,3 +30,31 @@ func Test_Duration_guards_against_zero_or_negative_duration(t *testing.T) {
 		t.Fatalf("DurationInMinutes(0), want = error(%q), have = error(%q)", expected, actual)
 	}
 }
+
+func Test_UnverifiedDuration_Valid_Input(t *testing.T) {
+	inMinutes := 1
+	unverifiedInput := pricingEngine.UnverifiedDuration{DurationInMinutes: inMinutes}
+
+	actual, _ := unverifiedInput.Verify()
+	expected, _ := pricingEngine.DurationInMinutes(inMinutes)
+
+	if expected != actual {
+		t.Fatalf("UnverifiedDuration({DurationInMinutes: %v}), want = DurationInMinutes(%v), have = %T(%v)", inMinutes, expected, actual, actual)
+	}
+}
+
+func Test_UnverifiedDuration_Invalid_Input(t *testing.T) {
+	inMinutes := 0
+	unverifiedInput := pricingEngine.UnverifiedDuration{DurationInMinutes: inMinutes}
+
+	_, actual := unverifiedInput.Verify()
+	_, expected := pricingEngine.DurationInMinutes(0)
+
+	if nil == actual {
+		t.Fatalf("UnverifiedDuration{DurationInMinutes: 0}.Verify(), want = error, have = nil")
+	}
+
+	if expected != actual {
+		t.Fatalf("UnverifiedDuration{DurationInMinutes: 0}.Verify(), want = %T(%v), have = %T(%v)", expected, expected, actual, actual)
+	}
+}
