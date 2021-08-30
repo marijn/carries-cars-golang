@@ -21,7 +21,7 @@ type UnverifiedDuration struct {
 }
 
 func (unsafe UnverifiedDuration) Verify() (Duration, error) {
-	return
+	return DurationInMinutes(unsafe.DurationInMinutes)
 }
 
 func DurationInMinutes(durationInMinutes int) (Duration, error) {
