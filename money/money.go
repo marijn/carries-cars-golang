@@ -7,7 +7,7 @@ type Money struct {
 	currencyIsoCode CurrencyIsoCode
 }
 
-func Eur(amount int) Money {
+func EUR(amount int) Money {
 	return
 }
 
