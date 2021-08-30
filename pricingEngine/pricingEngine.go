@@ -15,7 +15,9 @@ type Duration struct {
 
 func DurationInMinutes(durationInMinutes int) (Duration, error) {
 	if durationInMinutes <= 0 {
-		return Duration{durationInMinutes: 1}, errors.New("Duration should be a positive number in minutes")
+		defaultDuration := Duration{durationInMinutes: 1}
+
+		return defaultDuration, errors.New("Duration should be a positive number in minutes")
 	}
 
 	return Duration{durationInMinutes: durationInMinutes}, nil
