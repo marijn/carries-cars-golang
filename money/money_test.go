@@ -10,7 +10,7 @@ func Test_Money_Equals_detects_equal_values(t *testing.T) {
 	expected := true
 
 	if actual != expected {
-		t.Fatalf("EUR(99).Equals(EUR(99)) want = %b, have = %b", expected, actual)
+		t.Fatalf("EUR(99).Equals(EUR(99)) want = %t, have = %t", expected, actual)
 	}
 }
 
@@ -19,7 +19,7 @@ func Test_Money_Equals_detects_currency_differences(t *testing.T) {
 	expected := false
 
 	if actual != expected {
-		t.Fatalf("EUR(10).Equals(USD(10)) want = %b, have = %b", expected, actual)
+		t.Fatalf("EUR(10).Equals(USD(10)) want = %t, have = %t", expected, actual)
 	}
 }
 
@@ -28,7 +28,7 @@ func Test_Money_Equals_detects_amount_differences(t *testing.T) {
 	expected := false
 
 	if actual != expected {
-		t.Fatalf("EUR(1).Equals(EUR(2)) want = %b, have = %b", expected, actual)
+		t.Fatalf("EUR(1).Equals(EUR(2)) want = %t, have = %t", expected, actual)
 	}
 }
 
