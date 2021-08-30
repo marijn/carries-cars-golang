@@ -11,6 +11,10 @@ func EUR(amount int) Money {
 	return
 }
 
+func USD(amount int) Money {
+	return
+}
+
 func (money Money) Equals(other Money) bool {
 	return
 }
@@ -20,3 +24,4 @@ func (money Money) Amount() int {
 }
 
 const Euro = "EUR"
+const UnitedStatesDollar = "USD"
