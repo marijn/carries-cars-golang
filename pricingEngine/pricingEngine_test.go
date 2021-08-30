@@ -48,13 +48,13 @@ func Test_UnverifiedDuration_Invalid_Input(t *testing.T) {
 	unverifiedInput := pricingEngine.UnverifiedDuration{DurationInMinutes: inMinutes}
 
 	_, actual := unverifiedInput.Verify()
-	_, expected := pricingEngine.DurationInMinutes(0)
+	expected := "Duration should be a positive number in minutes"
 
 	if nil == actual {
 		t.Fatalf("UnverifiedDuration{DurationInMinutes: 0}.Verify(), want = error, have = nil")
 	}
 
-	if expected != actual {
-		t.Fatalf("UnverifiedDuration{DurationInMinutes: 0}.Verify(), want = %T(%v), have = %T(%v)", expected, expected, actual, actual)
+	if expected != actual.Error() {
+		t.Fatalf("UnverifiedDuration{DurationInMinutes: 0}.Verify(), want = error(%q), have = error(%q)", expected, actual.Error())
 	}
 }
