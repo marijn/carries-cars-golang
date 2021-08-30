@@ -18,7 +18,7 @@ func Test_CalculatePrice_charged_per_minute(t *testing.T) {
 
 func Test_Duration_guards_against_zero_or_negative_duration(t *testing.T) {
 	_, err := pricingEngine.DurationInMinutes(0)
-	expected := "Duration should be a positive number in minutes"
+	expected := "duration should be a positive number in minutes"
 
 	if nil == err {
 		t.Fatalf("DurationInMinutes(0), want = error(%q), have = nil", expected)
@@ -48,7 +48,7 @@ func Test_UnverifiedDuration_Invalid_Input(t *testing.T) {
 	unverifiedInput := pricingEngine.UnverifiedDuration{DurationInMinutes: inMinutes}
 
 	_, actual := unverifiedInput.Verify()
-	expected := "Duration should be a positive number in minutes"
+	expected := "duration should be a positive number in minutes"
 
 	if nil == actual {
 		t.Fatalf("UnverifiedDuration{DurationInMinutes: 0}.Verify(), want = error, have = nil")
