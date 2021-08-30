@@ -1,5 +1,7 @@
 package money
 
+import "math"
+
 type CurrencyIsoCode string
 
 type Money struct {
@@ -30,7 +32,10 @@ func (money Money) Amount() int {
 }
 
 func (money Money) Multiply(multiplier float64) Money {
-	return money
+	return Money{
+		amount:          int(math.Round(float64(money.amount) * multiplier)),
+		currencyIsoCode: money.currencyIsoCode,
+	}
 }
 
 const Euro = "EUR"
