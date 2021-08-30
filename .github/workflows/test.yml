@@ -23,12 +23,6 @@ jobs:
           MODULE_NAME: ${{ matrix.module }}
         run: cd ${MODULE_NAME} && go test ./... -json > test-${MODULE_NAME}.json
 
-      - name: debug output
-        if: always()
-        env:
-          MODULE_NAME: ${{ matrix.module }}
-        run: cat ${MODULE_NAME}/test-${MODULE_NAME}.json
-
       - name: Annotate tests
         if: always()
         uses: guyarb/golang-test-annotations@v0.3.0
