@@ -12,6 +12,6 @@ type Duration struct {
 	durationInMinutes int
 }
 
-func DurationInMinutes(durationInMinutes int) Duration {
-	return Duration{durationInMinutes: durationInMinutes}
+func DurationInMinutes(durationInMinutes int) (Duration, error) {
+	return Duration{durationInMinutes: durationInMinutes}, nil
 }
