@@ -15,3 +15,7 @@ func Test_CalculatePrice_charged_per_minute(t *testing.T) {
 		t.Fatalf("Price EUR(30) x 1min, want = EUR(30), have = EUR(%v)", expected.Amount())
 	}
 }
+
+func Test_Duration_guards_against_zero_or_negative_duration(t *testing.T) {
+	t.Skip("Todo")
+}
