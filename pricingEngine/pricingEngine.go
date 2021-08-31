@@ -5,6 +5,17 @@ import (
 	"errors"
 )
 
+// UnverifiedDuration should be used when accepting input from untrusted sources (pretty much anywhere) in the model.
+// This type models input that has not been verified and is therefore unsafe to use until it has been verified.
+// Use Verify() to transform it to trusted input in the form of a duration model.
+type UnverifiedDuration struct {
+	DurationInMinutes int
+}
+
+func (unsafe UnverifiedDuration) Verify() (Duration, error) {
+	return DurationInMinutes(unsafe.DurationInMinutes)
+}
+
 func CalculatePrice(pricePerMinute money.Money, duration Duration) money.Money {
 	return pricePerMinute.Multiply(float64(duration.DurationInMinutes()))
 }
@@ -19,17 +30,6 @@ type Duration interface {
 
 func (duration duration) DurationInMinutes() int {
 	return duration.durationInMinutes
-}
-
-// UnverifiedDuration should be used when accepting input from untrusted sources (pretty much anywhere) in the model.
-// This type models input that has not been verified and is therefore unsafe to use until it has been verified.
-// Use Verify() to transform it to trusted input in the form of a duration model.
-type UnverifiedDuration struct {
-	DurationInMinutes int
-}
-
-func (unsafe UnverifiedDuration) Verify() (Duration, error) {
-	return DurationInMinutes(unsafe.DurationInMinutes)
 }
 
 func DurationInMinutes(durationInMinutes int) (Duration, error) {
