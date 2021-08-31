@@ -24,14 +24,6 @@ type Duration interface {
 	DurationInMinutes() int
 }
 
-type duration struct {
-	durationInMinutes int
-}
-
-func (duration duration) DurationInMinutes() int {
-	return duration.durationInMinutes
-}
-
 func DurationInMinutes(durationInMinutes int) (Duration, error) {
 	if durationInMinutes <= 0 {
 		defaultDuration := duration{durationInMinutes: 1}
@@ -40,4 +32,12 @@ func DurationInMinutes(durationInMinutes int) (Duration, error) {
 	}
 
 	return duration{durationInMinutes: durationInMinutes}, nil
+}
+
+type duration struct {
+	durationInMinutes int
+}
+
+func (duration duration) DurationInMinutes() int {
+	return duration.durationInMinutes
 }
