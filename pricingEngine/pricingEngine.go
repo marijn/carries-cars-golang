@@ -34,10 +34,10 @@ func DurationInMinutes(durationInMinutes int) (Duration, error) {
 	return duration{durationInMinutes: durationInMinutes}, nil
 }
 
-type duration struct {
-	durationInMinutes int
-}
-
 func (duration duration) DurationInMinutes() int {
 	return duration.durationInMinutes
+}
+
+type duration struct {
+	durationInMinutes int
 }
