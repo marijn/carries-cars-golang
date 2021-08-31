@@ -5,7 +5,7 @@ import (
 	"errors"
 )
 
-func CalculatePrice(pricePerMinute money.Money, duration PublicDuration) money.Money {
+func CalculatePrice(pricePerMinute money.Money, duration Duration) money.Money {
 	return pricePerMinute.Multiply(float64(duration.DurationInMinutes()))
 }
 
@@ -13,7 +13,7 @@ type duration struct {
 	durationInMinutes int
 }
 
-type PublicDuration interface {
+type Duration interface {
 	DurationInMinutes() int
 }
 
@@ -28,11 +28,11 @@ type UnverifiedDuration struct {
 	DurationInMinutes int
 }
 
-func (unsafe UnverifiedDuration) Verify() (PublicDuration, error) {
+func (unsafe UnverifiedDuration) Verify() (Duration, error) {
 	return DurationInMinutes(unsafe.DurationInMinutes)
 }
 
-func DurationInMinutes(durationInMinutes int) (PublicDuration, error) {
+func DurationInMinutes(durationInMinutes int) (Duration, error) {
 	if durationInMinutes <= 0 {
 		defaultDuration := duration{durationInMinutes: 1}
 
