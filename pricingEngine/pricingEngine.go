@@ -13,6 +13,10 @@ type Duration struct {
 	durationInMinutes int
 }
 
+func (duration Duration) DurationInMinutes() int {
+	return duration.durationInMinutes
+}
+
 // UnverifiedDuration should be used when accepting input from untrusted sources (pretty much anywhere) in the model.
 // This type models input that has not been verified and is therefore unsafe to use until it has been verified.
 // Use Verify() to transform it to trusted input in the form of a Duration model.
