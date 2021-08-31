@@ -9,7 +9,7 @@ func CalculatePrice(pricePerMinute money.Money, duration PublicDuration) money.M
 	return pricePerMinute.Multiply(float64(duration.DurationInMinutes()))
 }
 
-type Duration struct {
+type duration struct {
 	durationInMinutes int
 }
 
@@ -17,13 +17,13 @@ type PublicDuration interface {
 	DurationInMinutes() int
 }
 
-func (duration Duration) DurationInMinutes() int {
+func (duration duration) DurationInMinutes() int {
 	return duration.durationInMinutes
 }
 
 // UnverifiedDuration should be used when accepting input from untrusted sources (pretty much anywhere) in the model.
 // This type models input that has not been verified and is therefore unsafe to use until it has been verified.
-// Use Verify() to transform it to trusted input in the form of a Duration model.
+// Use Verify() to transform it to trusted input in the form of a duration model.
 type UnverifiedDuration struct {
 	DurationInMinutes int
 }
@@ -34,10 +34,10 @@ func (unsafe UnverifiedDuration) Verify() (PublicDuration, error) {
 
 func DurationInMinutes(durationInMinutes int) (PublicDuration, error) {
 	if durationInMinutes <= 0 {
-		defaultDuration := Duration{durationInMinutes: 1}
+		defaultDuration := duration{durationInMinutes: 1}
 
 		return defaultDuration, errors.New("duration should be a positive number in minutes")
 	}
 
-	return Duration{durationInMinutes: durationInMinutes}, nil
+	return duration{durationInMinutes: durationInMinutes}, nil
 }
