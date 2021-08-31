@@ -20,12 +20,12 @@ func CalculatePrice(pricePerMinute money.Money, duration Duration) money.Money {
 	return pricePerMinute.Multiply(float64(duration.DurationInMinutes()))
 }
 
-type duration struct {
-	durationInMinutes int
-}
-
 type Duration interface {
 	DurationInMinutes() int
+}
+
+type duration struct {
+	durationInMinutes int
 }
 
 func (duration duration) DurationInMinutes() int {
