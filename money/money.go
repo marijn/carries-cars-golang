@@ -5,6 +5,8 @@ import "math"
 type CurrencyIsoCode string
 
 type Money struct {
+	// amount is denoted in the lowest denominator of the corresponding currency.
+	// E.g. amount is in whole cents for the Euro or UnitedStatesDollar
 	amount          int
 	currencyIsoCode CurrencyIsoCode
 }
