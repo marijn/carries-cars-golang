@@ -41,7 +41,7 @@ func (money Money) Amount() int {
 	return money.amount
 }
 
-func (money Money) Multiply(multiplier float64) Money {
+func (money Money) MultiplyAndRound(multiplier float64) Money {
 	multipliedAmount := float64(money.amount) * multiplier
 	multipliedAmountRounded := int(math.Round(multipliedAmount))
 
