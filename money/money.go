@@ -51,6 +51,8 @@ func (money trustedMoney) MultiplyAndRound(multiplier float64) Money {
 const Euro = "EUR"
 const UnitedStatesDollar = "USD"
 
+// Internals and boring (machine-generated) code below
+
 // trustedMoney is hidden from the API surface to ensure that this type is trustworthy because it can only be created
 // through one of the named constructors (EUR() or USD()).
 type trustedMoney struct {
