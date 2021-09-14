@@ -9,6 +9,8 @@ type Money struct {
 	currencyIsoCode CurrencyIsoCode
 }
 
+// EUR acts as a named constructor function to create Money for the Euro currency.
+// Provide the amount in cents.
 func EUR(amount int) Money {
 	return Money{
 		amount:          amount,
