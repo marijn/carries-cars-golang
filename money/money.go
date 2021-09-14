@@ -37,9 +37,10 @@ func (money Money) Amount() int {
 
 func (money Money) Multiply(multiplier float64) Money {
 	multipliedAmount := float64(money.amount) * multiplier
+	multipliedAmountRounded := int(math.Round(multipliedAmount))
 
 	return Money{
-		amount:          int(math.Round(multipliedAmount)),
+		amount:          multipliedAmountRounded,
 		currencyIsoCode: money.currencyIsoCode,
 	}
 }
