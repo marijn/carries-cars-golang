@@ -27,6 +27,10 @@ func (money Money) Equals(other Money) bool {
 	return money.amount == other.amount && money.currencyIsoCode == other.currencyIsoCode
 }
 
+func (money Money) CurrencyIsoCode() CurrencyIsoCode {
+	return money.currencyIsoCode
+}
+
 func (money Money) Amount() int {
 	return money.amount
 }
