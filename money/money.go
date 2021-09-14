@@ -11,6 +11,8 @@ type Money interface {
 	Equals(other Money) bool
 }
 
+// trustedMoney is hidden from the API surface to ensure that this type is trustworthy because it can only be created
+// through one of the named constructors (EUR() or USD()).
 type trustedMoney struct {
 	// amount is denoted in the lowest denominator of the corresponding currency.
 	// E.g. amount is in whole cents for the Euro or UnitedStatesDollar
