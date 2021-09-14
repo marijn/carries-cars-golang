@@ -47,14 +47,6 @@ func (money trustedMoney) Equals(other Money) bool {
 	return money.amount == other.Amount() && money.currencyIsoCode == other.CurrencyIsoCode()
 }
 
-func (money trustedMoney) CurrencyIsoCode() CurrencyIsoCode {
-	return money.currencyIsoCode
-}
-
-func (money trustedMoney) Amount() int {
-	return money.amount
-}
-
 func (money trustedMoney) MultiplyAndRound(multiplier float64) Money {
 	multipliedAmount := float64(money.amount) * multiplier
 	multipliedAmountRounded := int(math.Round(multipliedAmount))
@@ -67,3 +59,11 @@ func (money trustedMoney) MultiplyAndRound(multiplier float64) Money {
 
 const Euro = "EUR"
 const UnitedStatesDollar = "USD"
+
+func (money trustedMoney) CurrencyIsoCode() CurrencyIsoCode {
+	return money.currencyIsoCode
+}
+
+func (money trustedMoney) Amount() int {
+	return money.amount
+}
