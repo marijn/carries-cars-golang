@@ -4,11 +4,11 @@ import "math"
 
 type CurrencyIsoCode string
 
-type PublicMoney interface {
+type Money interface {
 	Amount() int
 	CurrencyIsoCode() CurrencyIsoCode
-	MultiplyAndRound(multiplier float64) PublicMoney
-	Equals(other PublicMoney) bool
+	MultiplyAndRound(multiplier float64) Money
+	Equals(other Money) bool
 }
 
 type trustedMoney struct {
@@ -20,7 +20,7 @@ type trustedMoney struct {
 
 // EUR acts as a named constructor function to create trustedMoney for the Euro currency.
 // Provide the amount in cents.
-func EUR(amount int) PublicMoney {
+func EUR(amount int) Money {
 	return trustedMoney{
 		amount:          amount,
 		currencyIsoCode: Euro,
@@ -29,14 +29,14 @@ func EUR(amount int) PublicMoney {
 
 // USD acts as a named constructor function to create trustedMoney for the UnitedStatesDollar currency.
 // Provide the amount in cents.
-func USD(amount int) PublicMoney {
+func USD(amount int) Money {
 	return trustedMoney{
 		amount:          amount,
 		currencyIsoCode: UnitedStatesDollar,
 	}
 }
 
-func (money trustedMoney) Equals(other PublicMoney) bool {
+func (money trustedMoney) Equals(other Money) bool {
 	return money.amount == other.Amount() && money.currencyIsoCode == other.CurrencyIsoCode()
 }
 
@@ -48,7 +48,7 @@ func (money trustedMoney) Amount() int {
 	return money.amount
 }
 
-func (money trustedMoney) MultiplyAndRound(multiplier float64) PublicMoney {
+func (money trustedMoney) MultiplyAndRound(multiplier float64) Money {
 	multipliedAmount := float64(money.amount) * multiplier
 	multipliedAmountRounded := int(math.Round(multipliedAmount))
 
