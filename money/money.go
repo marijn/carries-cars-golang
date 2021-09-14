@@ -60,7 +60,7 @@ func (money trustedMoney) MultiplyAndRound(multiplier float64) Money {
 const Euro = "EUR"
 const UnitedStatesDollar = "USD"
 
-// Boring stuff below
+// Boring (machine-generated) code below
 
 func (money trustedMoney) CurrencyIsoCode() CurrencyIsoCode {
 	return money.currencyIsoCode
