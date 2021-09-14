@@ -30,7 +30,7 @@ func USD(amount int) Money {
 }
 
 func (money Money) Equals(other Money) bool {
-	return money.amount == other.amount && money.currencyIsoCode == other.currencyIsoCode
+	return money.amount == other.Amount() && money.currencyIsoCode == other.CurrencyIsoCode()
 }
 
 func (money Money) CurrencyIsoCode() CurrencyIsoCode {
