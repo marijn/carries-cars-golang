@@ -18,6 +18,8 @@ func EUR(amount int) Money {
 	}
 }
 
+// USD acts as a named constructor function to create Money for the UnitedStatesDollar currency.
+// Provide the amount in cents.
 func USD(amount int) Money {
 	return Money{
 		amount:          amount,
