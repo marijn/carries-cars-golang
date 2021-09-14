@@ -16,15 +16,6 @@ type Money interface {
 	Equals(other Money) bool
 }
 
-// trustedMoney is hidden from the API surface to ensure that this type is trustworthy because it can only be created
-// through one of the named constructors (EUR() or USD()).
-type trustedMoney struct {
-	// amount is denoted in the lowest denominator of the corresponding currency.
-	// E.g. amount is in whole cents for the Euro or UnitedStatesDollar
-	amount          int
-	currencyIsoCode CurrencyIsoCode
-}
-
 // EUR acts as a named constructor function to create trustedMoney for the Euro currency.
 // Provide the amount in cents.
 func EUR(amount int) Money {
@@ -59,6 +50,15 @@ func (money trustedMoney) MultiplyAndRound(multiplier float64) Money {
 
 const Euro = "EUR"
 const UnitedStatesDollar = "USD"
+
+// trustedMoney is hidden from the API surface to ensure that this type is trustworthy because it can only be created
+// through one of the named constructors (EUR() or USD()).
+type trustedMoney struct {
+	// amount is denoted in the lowest denominator of the corresponding currency.
+	// E.g. amount is in whole cents for the Euro or UnitedStatesDollar
+	amount          int
+	currencyIsoCode CurrencyIsoCode
+}
 
 // Boring (machine-generated) code below
 
