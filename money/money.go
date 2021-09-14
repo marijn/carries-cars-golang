@@ -5,9 +5,14 @@ import "math"
 type CurrencyIsoCode string
 
 type Money interface {
+	// Amount is denoted in the lowest denominator of the corresponding currency.
+	// E.g. amount is in whole cents for the Euro or UnitedStatesDollar
 	Amount() int
+
 	CurrencyIsoCode() CurrencyIsoCode
+
 	MultiplyAndRound(multiplier float64) Money
+
 	Equals(other Money) bool
 }
 
