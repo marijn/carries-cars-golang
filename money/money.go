@@ -4,39 +4,70 @@ import "math"
 
 type CurrencyIsoCode string
 
-type Money struct {
-	amount          int
-	currencyIsoCode CurrencyIsoCode
+type Money interface {
+	// Amount is denoted in the lowest denominator of the corresponding currency.
+	// E.g. amount is in whole cents for the Euro or UnitedStatesDollar
+	Amount() int
+
+	CurrencyIsoCode() CurrencyIsoCode
+
+	MultiplyAndRound(multiplier float64) Money
+
+	Equals(other Money) bool
 }
 
+// EUR acts as a named constructor function to create trustedMoney for the Euro currency.
+// Provide the amount in cents.
 func EUR(amount int) Money {
-	return Money{
+	return trustedMoney{
 		amount:          amount,
 		currencyIsoCode: Euro,
 	}
 }
 
+// USD acts as a named constructor function to create trustedMoney for the UnitedStatesDollar currency.
+// Provide the amount in cents.
 func USD(amount int) Money {
-	return Money{
+	return trustedMoney{
 		amount:          amount,
 		currencyIsoCode: UnitedStatesDollar,
 	}
 }
 
-func (money Money) Equals(other Money) bool {
-	return money.amount == other.amount && money.currencyIsoCode == other.currencyIsoCode
+func (money trustedMoney) Equals(other Money) bool {
+	return money.amount == other.Amount() && money.currencyIsoCode == other.CurrencyIsoCode()
 }
 
-func (money Money) Amount() int {
-	return money.amount
-}
+func (money trustedMoney) MultiplyAndRound(multiplier float64) Money {
+	multipliedAmount := float64(money.amount) * multiplier
+	multipliedAmountRounded := int(math.Round(multipliedAmount))
 
-func (money Money) Multiply(multiplier float64) Money {
-	return Money{
-		amount:          int(math.Round(float64(money.amount) * multiplier)),
+	return trustedMoney{
+		amount:          multipliedAmountRounded,
 		currencyIsoCode: money.currencyIsoCode,
 	}
 }
 
 const Euro = "EUR"
 const UnitedStatesDollar = "USD"
+
+// Internals and boring (machine-generated) code below
+
+// trustedMoney is hidden from the API surface to ensure that this type is trustworthy because it can only be created
+// through one of the named constructors (EUR() or USD()).
+type trustedMoney struct {
+	// amount is denoted in the lowest denominator of the corresponding currency.
+	// E.g. amount is in whole cents for the Euro or UnitedStatesDollar
+	amount          int
+	currencyIsoCode CurrencyIsoCode
+}
+
+// Boring (machine-generated) code below
+
+func (money trustedMoney) CurrencyIsoCode() CurrencyIsoCode {
+	return money.currencyIsoCode
+}
+
+func (money trustedMoney) Amount() int {
+	return money.amount
+}

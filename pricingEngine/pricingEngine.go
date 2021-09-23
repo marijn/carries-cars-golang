@@ -19,7 +19,7 @@ func (unsafe UnverifiedDuration) Verify() (Duration, error) {
 func CalculatePrice(pricePerMinute money.Money, duration Duration) money.Money {
 	durationInMinutes := float64(duration.DurationInMinutes())
 
-	return pricePerMinute.Multiply(durationInMinutes)
+	return pricePerMinute.MultiplyAndRound(durationInMinutes)
 }
 
 type Duration interface {

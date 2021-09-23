@@ -33,29 +33,29 @@ func Test_Money_Equals_detects_amount_differences(t *testing.T) {
 }
 
 func Test_Money_Multiply_multiplies(t *testing.T) {
-	actual := money.EUR(200).Multiply(2.00)
+	actual := money.EUR(200).MultiplyAndRound(2.00)
 	expected := money.EUR(400)
 
 	if actual != expected {
-		t.Fatalf("EUR(200).Multiply(2.00) want = EUR(%v), have = EUR(%v)", expected.Amount(), actual.Amount())
+		t.Fatalf("EUR(200).MultiplyAndRound(2.00) want = EUR(%v), have = EUR(%v)", expected.Amount(), actual.Amount())
 	}
 }
 
 func Test_Money_Multiply_rounds_upward_correctly(t *testing.T) {
-	actual := money.EUR(100).Multiply(1.999)
+	actual := money.EUR(100).MultiplyAndRound(1.999)
 	expected := money.EUR(200)
 
 	if actual != expected {
-		t.Fatalf("EUR(100).Multiply(1.999) want = EUR(%v), have = EUR(%v)", expected.Amount(), actual.Amount())
+		t.Fatalf("EUR(100).MultiplyAndRound(1.999) want = EUR(%v), have = EUR(%v)", expected.Amount(), actual.Amount())
 	}
 }
 
 func Test_Money_Multiply_rounds_downward_correctly(t *testing.T) {
-	actual := money.EUR(100).Multiply(1.994)
+	actual := money.EUR(100).MultiplyAndRound(1.994)
 	expected := money.EUR(199)
 
 	if actual != expected {
-		t.Fatalf("EUR(100).Multiply(1.994) want = EUR(%v), have = EUR(%v)", expected.Amount(), actual.Amount())
+		t.Fatalf("EUR(100).MultiplyAndRound(1.994) want = EUR(%v), have = EUR(%v)", expected.Amount(), actual.Amount())
 	}
 }
 
